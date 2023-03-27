@@ -212,7 +212,11 @@ struct __sanitizer_struct_mallinfo {
 
 #if SANITIZER_LINUX && !SANITIZER_ANDROID
 struct __sanitizer_struct_mallinfo {
+#ifdef HAVE_MALLINFO2
+  long v[10];
+#else
   int v[10];
+#endif
 };
 
 extern unsigned struct_ustat_sz;
